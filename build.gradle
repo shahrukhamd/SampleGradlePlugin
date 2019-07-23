@@ -1,0 +1,38 @@
+plugins {
+    id 'java-gradle-plugin'
+    id 'groovy'
+}
+
+group 'com.project.sdk'
+version '1.0'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+gradlePlugin {
+    plugins {
+        greetingsPlugin {
+            id = 'com.project.sdk.your-plugin-name'
+            implementationClass = 'com.project.sdk.ServicesPlugin'
+        }
+    }
+}
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+    implementation 'com.google.code.gson:gson:2.8.5'
+}
+
+apply plugin: 'maven'
+
+uploadArchives {
+    repositories {
+        mavenDeployer {
+            repository(url: uri('/Users/shahrukhahmed/Development'))
+        }
+    }
+}
